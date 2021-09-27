@@ -1,0 +1,399 @@
+﻿<UserControl x:Class="StarCinema.Views.UserControls.AdminPanel_UC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:StarCinema.Views.UserControls"
+             xmlns:viewmodel="clr-namespace:StarCinema.ViewModels"
+             xmlns:fw ="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+             xmlns:views="clr-namespace:StarCinema.Views.UserControls"
+             mc:Ignorable="d" Name="AdminPanel" 
+             ScrollViewer.VerticalScrollBarVisibility="Visible" Height="1024" Width="1120">
+
+    <UserControl.DataContext>
+        <viewmodel:AdminPanel_UCViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <DataTemplate x:Name="GetMovies_UCViewTemplate"
+                      DataType="{x:Type viewmodel:GetMovies_UCViewModel}">
+            <views:GetMovies_UC/>
+        </DataTemplate>
+        <DataTemplate x:Name="CreateCinemaViewTemplate"
+                      DataType="{x:Type viewmodel:CreateCinema_UCViewModel}">
+            <views:CreateCinema_UC/>
+        </DataTemplate>
+        <DataTemplate x:Name="Sell_ActivitiesaViewTemplate" 
+                      DataType="{x:Type viewmodel:Sell_Activities_UCViewModel}">
+            <views:Sell_Activities_UC/>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Label Content="A D M I N     S I D E" 
+                       Name="Lab1"
+                           Foreground="Gold"   FontSize="30" Margin="10,0,-520,10" >
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard RepeatBehavior="Forever">
+                                    <DoubleAnimation 
+                       Storyboard.TargetProperty="Width" From="-1100" To="1550" 
+                       Duration="0:0:5" BeginTime="0:0:0" AutoReverse="True"/>
+                                    <DoubleAnimation  
+                       Storyboard.TargetProperty="Width" From="1550" To="-1100" 
+                       Duration="0:0:5" BeginTime="0:0:5" AutoReverse="True"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <Canvas x:Name="Grid_Admin">
+
+
+            <Canvas Grid.Column="0" Background="{fw:RevealBrush}"
+                    x:Name="Grid_SignIn">
+
+
+
+                <Border Background="{fw:RevealBrush}"
+                    x:Name="Border_PasswordSignIn" 
+                    Height="906" Width="481" Canvas.Left="4" Canvas.Top="6" >
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="131*"></ColumnDefinition>
+                            <ColumnDefinition Width="149*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="209*"></ColumnDefinition>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="43*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox 
+                    x:Name="Username" 
+                    Visibility="Visible"
+                    Height="50"
+                    IsEnabled="True"
+                    Width="289" Text="Username" 
+                    Foreground="{StaticResource AdminPanelForeGroundColor}"
+                    BorderBrush="{StaticResource AdminPanelBorderColor}"
+                    FontSize="{StaticResource AdminPanelFontSize}"
+                    Style="{StaticResource ArialBold}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    VerticalContentAlignment="Center"
+                    AcceptsReturn="True" 
+                    TextWrapping="Wrap" 
+                    AcceptsTab="True" 
+                    Focusable="True" 
+                    Padding="5"
+                    MaxLength="20"
+                    MaxLines="20" 
+                    MouseEnter="Username_MouseEnter" 
+                    MouseLeave="Username_MouseLeave" 
+                    Canvas.Left="152" Canvas.Top="500"
+                            Grid.ColumnSpan="4" Margin="0,477,101.525,379"  />
+                        <Label 
+                            x:Name="PasswordLabel2"
+                            Visibility="Hidden" Content="Password:" 
+                            Foreground="{StaticResource AdminPanelForeGroundColor}"
+                            BorderBrush="{StaticResource AdminPanelBorderColor}"
+                            FontSize="{StaticResource AdminPanelFontSize}"
+                            Style="{StaticResource ArialBold}" 
+                            HorizontalAlignment="Right"   
+                            VerticalAlignment="Center" 
+                            Height="32" Width="112" 
+                            HorizontalContentAlignment="Center"
+                            Margin="0,625,118,249"
+                            Grid.ColumnSpan="2" 
+                            RenderTransformOrigin="0.571,3.75" />
+
+                        <PasswordBox
+                            x:Name="Password"
+                            Visibility="Visible"
+                            Height="50" Width="289"
+                            Foreground="{StaticResource AdminPanelForeGroundColor}"
+                            BorderBrush="{StaticResource AdminPanelBorderColor}" 
+                            FontSize="{StaticResource AdminPanelFontSize}" 
+                            Style="{StaticResource ArialBold}"
+                            VerticalAlignment="Center" HorizontalAlignment="Right"
+                            VerticalContentAlignment="Center"  
+                            Focusable="True" Padding="5,0,0,0" MaxLength="20"
+                            Margin="0,586,101.525,270" Grid.ColumnSpan="4"  />
+
+                    </Grid>
+
+                </Border>
+                <Button  
+                    x:Name="SignIn"
+                    Visibility="Visible" 
+                    Width="189"
+                    Height="86" 
+                    Style="{StaticResource AdminPanelButton}" 
+                    Content="Sign In" VerticalAlignment="Center" 
+                    HorizontalAlignment="Right" 
+                    Command="{Binding AdminSignInCommand}" 
+                    Grid.RowSpan="2" 
+                    Canvas.Left="348" 
+                    Canvas.Top="502" />
+
+                <materialDesign:PackIcon 
+                    Kind="User" FontSize="50"
+                    MouseDown="PackIcon_MouseEnter" 
+                    ToolTip="Sign In"
+                    Foreground="Red" Width="200" 
+                    Height="200" Grid.RowSpan="3" Canvas.Left="89" Canvas.Top="216"/>
+
+                <materialDesign:PackIcon 
+                    Kind="Login" FontSize="50"
+                    MouseDown="PackIcon_MouseEnter" 
+                    ToolTip="Sign In"
+                    Foreground="Red" Width="90" 
+                    Height="90" Grid.RowSpan="3" Canvas.Left="54" Canvas.Top="252"/>
+
+                <!--<Grid Grid.Row="3" x:Name="Grid_BuyMovies">
+                    <Grid>
+
+                        <Button 
+                            x:Name="BuyTicketButton" Width="450" Height="42"
+                            Style="{StaticResource AdminPanelButton}" FontSize="20" 
+                            Content="Buy Ticket" VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"  Command="{Binding GotoBuyMovies}" 
+                            Margin="0,0,10,5" Visibility="Hidden" />
+                        -->
+                <!--<Button Grid.Column="2" x:Name="BuyList" Width="200" Height="42" Style="{StaticResource AdminPanelButton}" FontSize="20" Content="Buy list" VerticalAlignment="Center" HorizontalAlignment="Center"  Command="{Binding }" Margin="0,0,10,5" Visibility="Hidden" />-->
+                <!--
+                    </Grid>
+                </Grid>-->
+            </Canvas>
+
+            <Canvas Grid.Column="1"  x:Name="Grid_SignUp" Margin="160,0,0,10">
+
+                <materialDesign:PackIcon 
+                    Kind="UserAdd" FontSize="50"
+                    MouseDown ="PackIcon_MouseDown" 
+                    ToolTip="Registration"
+                    Foreground="Gold" Width="200" 
+                    Height="200" Grid.RowSpan="3" Canvas.Left="142" Canvas.Top="213"/>
+
+                <TextBox x:Name="Name"  Height="50" 
+                         Width="530" Text="Name"  Visibility="Visible"
+                         Foreground="{StaticResource AdminPanelForeGroundColor}" 
+                         BorderBrush="{StaticResource AdminPanelBorderColor}"
+                         FontSize="{StaticResource AdminPanelFontSize}"
+                         Style="{StaticResource ArialBold}" 
+                         VerticalAlignment="Center" HorizontalAlignment="Center"
+                         VerticalContentAlignment="Center" AcceptsReturn="True" 
+                         TextWrapping="Wrap" AcceptsTab="True" Focusable="True" 
+                         Padding="5" MaxLength="20" MaxLines="20" MouseEnter="Name_MouseEnter"
+                         MouseLeave="Name_MouseLeave" Canvas.Left="415" Canvas.Top="317" />
+                <TextBox
+                    x:Name="Surname"  Height="50" Width="530" Visibility="Visible"
+                    Text="Surname" Foreground="{StaticResource AdminPanelForeGroundColor}"
+                    BorderBrush="{StaticResource AdminPanelBorderColor}" 
+                    FontSize="{StaticResource AdminPanelFontSize}"
+                    Style="{StaticResource ArialBold}" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    VerticalContentAlignment="Center" AcceptsReturn="True" 
+                    TextWrapping="Wrap" AcceptsTab="True" Focusable="True"
+                    Padding="5" MaxLength="20" MaxLines="20" 
+                    MouseEnter="Surname_MouseEnter"
+                    MouseLeave="Surname_MouseLeave"
+                    Canvas.Left="415" Canvas.Top="402" />
+                <TextBox 
+                    x:Name="Username2"  Height="50" Visibility="Visible"
+                    Width="530" Text="Username" Foreground="{StaticResource AdminPanelForeGroundColor}"
+                    BorderBrush="{StaticResource AdminPanelBorderColor}"
+                    FontSize="{StaticResource AdminPanelFontSize}"
+                    Style="{StaticResource ArialBold}" VerticalAlignment="Center"
+                    HorizontalAlignment="Center" VerticalContentAlignment="Center" 
+                    AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" 
+                    Focusable="True" Padding="5" MaxLength="20" MaxLines="20"
+                    MouseEnter="Username2_MouseEnter" 
+                    MouseLeave="Username2_MouseLeave" 
+                    Canvas.Left="415" Canvas.Top="483" />
+
+                <Border x:Name="Border_Password">
+
+                    <Canvas>
+                        <Label
+                            x:Name="PasswordLabel" 
+                            Visibility="Visible"
+                            Content="Password:"
+                            Foreground="{StaticResource AdminPanelForeGroundColor}" 
+                            BorderBrush="{StaticResource AdminPanelBorderColor}"
+                            FontSize="{StaticResource AdminPanelFontSize}"
+                            Style="{StaticResource ArialBold}"
+                            HorizontalAlignment="Left"   
+                            VerticalAlignment="Center" 
+                            Height="32" 
+                            Width="112" 
+                            HorizontalContentAlignment="Center" 
+                            Canvas.Left="253"
+                            Canvas.Top="640"
+                             />
+
+                        <PasswordBox
+                            x:Name="Password2"
+                            Visibility="Visible"
+                            Height="50" 
+                            Width="500" 
+                            Foreground="{StaticResource AdminPanelForeGroundColor}"
+                            BorderBrush="{StaticResource AdminPanelBorderColor}"
+                            FontSize="{StaticResource AdminPanelFontSize}"
+                            Style="{StaticResource ArialBold}" 
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Right" 
+                            VerticalContentAlignment="Center" 
+                            Focusable="True"
+                            Padding="5,0,0,0"
+                            MaxLength="20" 
+                            Canvas.Left="439" 
+                            Canvas.Top="628" 
+                            ></PasswordBox>
+                    </Canvas>
+
+                </Border>
+
+                <Border  x:Name="Border_ConfirmPassword">
+
+                    <Canvas>
+                        <PasswordBox 
+                            Visibility="Visible"
+                            x:Name="ConfirmPassword"
+                            Grid.Column="1"
+                            Height="50"
+                            Width="500" 
+                            Foreground="{StaticResource AdminPanelForeGroundColor}"
+                            BorderBrush="{StaticResource AdminPanelBorderColor}"
+                            FontSize="{StaticResource AdminPanelFontSize}" 
+                            Style="{StaticResource ArialBold}" 
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" 
+                            VerticalContentAlignment="Center" 
+                            Focusable="True"
+                            Padding="5,0,0,0" 
+                            MaxLength="20" 
+                            Canvas.Left="437" 
+                            Canvas.Top="700" 
+                            />
+
+                        <Label
+                            Visibility="Visible"
+                            x:Name="ConfirmPasswordLabel" 
+                            Grid.Column="0"
+                            Content="Confirm Password:" 
+                            Foreground="{StaticResource AdminPanelForeGroundColor}" 
+                            BorderBrush="{StaticResource AdminPanelBorderColor}"
+                            FontSize="{StaticResource AdminPanelFontSize}"
+                            Style="{StaticResource ArialBold}"
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            Height="32" Width="195" 
+                            HorizontalContentAlignment="Center"
+                            Grid.ColumnSpan="2"
+                            Canvas.Left="207" 
+                            Canvas.Top="706"/>
+                    </Canvas>
+
+                </Border>
+                <TextBox
+                    Visibility="Visible"
+                    x:Name="Email" 
+                    Height="50" Width="530" Text="Email"
+                    Foreground="{StaticResource AdminPanelForeGroundColor}"
+                    BorderBrush="{StaticResource AdminPanelBorderColor}" 
+                    FontSize="{StaticResource AdminPanelFontSize}"
+                    Style="{StaticResource ArialBold}" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center" 
+                    VerticalContentAlignment="Center" 
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap" 
+                    AcceptsTab="True" 
+                    Focusable="True"
+                    Padding="5" MaxLength="20" MaxLines="20" MouseEnter="Email_MouseEnter"
+                    MouseLeave="Email_MouseLeave" Canvas.Left="413" Canvas.Top="561" />
+
+                <Button  
+                    Visibility="Visible"
+                    x:Name="SignUp" 
+                    Content="Sign Up"
+                    Width="256"
+                    Height="86"
+                    Style="{StaticResource AdminPanelButton}"
+                    Command="{Binding AdminSignUpCommand}" 
+                    Canvas.Top="213" Canvas.Left="609"
+                     />
+
+
+
+            </Canvas>
+
+
+        </Canvas>
+        <Grid Grid.Row="2" x:Name="Grid_GetMovies">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Button Grid.Column="0"
+                        x:Name="AddMoviesButton"
+                        Width="200" Height="42" 
+                        Style="{StaticResource AdminPanelButton}" 
+                        FontSize="20" Content="Add Movies"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                        Command="{Binding GotoMovies}"
+                        Margin="44,138,129,844" Visibility="Visible" />
+
+                <Button Grid.Column="1" 
+                        x:Name="MovieList" Width="200" Height="42"
+                        Style="{StaticResource AdminPanelButton}" 
+                        FontSize="20" Content="Movie list" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"  
+                        Command="{Binding GotoMovieList}" 
+                        Margin="62,138,112,844" 
+                        Visibility="Visible" />
+
+                <Button Grid.Column="2"
+                        x:Name="SellActivitiesButton" 
+                        Width="200" Height="42"
+                        Style="{StaticResource AdminPanelButton}"
+                        FontSize="20" Content="Sell Activities"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"  
+                        Command="{Binding GotoSellActivities}" 
+                        Margin="57,138,116,844" Visibility="Visible" />
+            </Grid>
+
+        </Grid>
+
+        <ContentControl x:Name="Ccontrol1" Visibility="Visible" Background="Red"
+                        Content="{Binding SelectedViewModel}" Width="189" Height="68" Canvas.Top="886" Margin="314,75,498,857"/>
+
+        <ContentControl x:Name="Ccontrol2" Visibility="Visible" Background="Red"
+                        Content="{Binding SelectedViewModel2}" Width="266" Height="74" 
+                                Canvas.Left="225" Canvas.Top="906" Margin="10,69,724,857"></ContentControl>
+    </Grid>
+    <!--<Label x:Name="ConfirmPassword2Label"  
+    Content="Confirm Password:"
+    Foreground="{StaticResource AdminPanelForeGroundColor}" 
+    BorderBrush="{StaticResource AdminPanelBorderColor}" 
+    FontSize="{StaticResource AdminPanelFontSize}"
+    Style="{StaticResource ArialBold}" HorizontalAlignment="Left" 
+    Margin="109,16,0,0" Grid.Row="4" VerticalAlignment="Top" 
+    Height="33" Width="198" HorizontalContentAlignment="Center"/>-->
+
+</UserControl>

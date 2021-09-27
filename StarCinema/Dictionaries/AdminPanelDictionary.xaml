@@ -1,0 +1,62 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fw ="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <SolidColorBrush x:Key="AdminPanelForeGroundColor" Color="Gold"></SolidColorBrush>
+    <SolidColorBrush x:Key="AdminPanelBorderColor" Color="Gold"></SolidColorBrush>
+    <sys:Double x:Key="AdminPanelFontSize" >20</sys:Double>
+
+    <Style x:Key="ArialBold">
+        <Setter Property="TextElement.FontFamily" Value="/Fonts/#Arial Bold"></Setter>
+        <Setter Property="TextElement.FontWeight" Value="Bold"></Setter>
+    </Style>
+
+    <Style x:Key="Geotype">
+        <Setter Property="TextElement.FontFamily" Value="/Fonts/#Geotype"></Setter>
+
+    </Style>
+
+    <Style x:Key="AdminPanelButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Gold" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="FontFamily" Value="/Fonts/#Arial Bold" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="StackBorder" CornerRadius="4" Background="{TemplateBinding Background}" BorderBrush="White" BorderThickness="2">
+                        <Grid>
+                            <!--<materialDesign:PackIcon x:Name="PathIcon" Kind="Sign"  Height="25" Background="White"  HorizontalAlignment="Left"
+                                  Margin="17,0,0,0" />-->
+                            <Path x:Name="PathIcon" Width="15" 
+                                  Height="25" Stretch="Fill" Fill="Gold" HorizontalAlignment="Left"
+                                 Data="M3,7L9,7L9,4L13,8L9,12L9,9L3,9z"/>
+                            <materialDesign:PackIcon Kind="SignIn" Margin="15,12,0,0" Height="55" Width="35" />
+                            <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Gold" />
+                            <Setter Property="Foreground" Value="{fw:AcrylicBrush}" />
+                            <Setter Property="BorderBrush" Value="{fw:AcrylicBrush}" />
+                            <Setter TargetName="PathIcon" Property="Fill" Value="{fw:AcrylicBrush}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{fw:AcrylicBrush}" />
+                            <Setter Property="Foreground" Value="Gold" />
+                            <Setter TargetName="PathIcon" Property="Fill" Value="Gold" />
+                            <Setter TargetName="StackBorder" Property="CornerRadius" Value="4" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+
+</ResourceDictionary>

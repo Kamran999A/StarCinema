@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ArrayOfUserAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserAccount>
+    <_Name>aa</_Name>
+    <Surname>aa</Surname>
+    <Email>aa@aa.aa</Email>
+    <Password>aa</Password>
+    <ConfirmPassword>aa</ConfirmPassword>
+    <Username>aa</Username>
+  </UserAccount>
+</ArrayOfUserAccount>
